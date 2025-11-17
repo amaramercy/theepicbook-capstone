@@ -10,13 +10,39 @@ jobs:
     runs-on: self-hosted
 
     steps:
+      # Step 1: Checkout the repo
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Build & run Docker Compose
+      # Step 2: Stop and remove existing containers
+      - name: Stop existing containers
         run: |
-          docker-compose -f docker-compose.yml up -d --build
+          docker-compose -f docker-compose.yml down
 
+          # Step 4: Verify deployment
       - name: Verify deployment
         run: |
           curl -I http://localhost:80
+
+# name: Deploy EpicBook
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   deploy:
+#     runs-on: self-hosted
+
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v3
+
+#       - name: Build & run Docker Compose
+#         run: |
+#           docker-compose -f docker-compose.yml up -d --build
+
+#       - name: Verify deployment
+#         run: |
+#           curl -I http://localhost:80
