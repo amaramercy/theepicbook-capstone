@@ -1,0 +1,22 @@
+name: Deploy EpicBook
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build & run Docker Compose
+        run: |
+          docker-compose -f docker-compose.yml up -d --build
+
+      - name: Verify deployment
+        run: |
+          curl -I http://localhost:80
