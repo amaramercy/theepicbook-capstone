@@ -1,24 +1,3 @@
-name: Deploy EpicBook
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  deploy:
-    runs-on: self-hosted
-
-    steps:
-      # Step 1: Checkout the repo
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      # Step 2: Stop and remove existing containers
-      - name: Stop existing containers
-        run: |
-          docker-compose -f docker-compose.yml down
-
 # name: Deploy EpicBook
 
 # on:
